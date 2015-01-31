@@ -1,0 +1,44 @@
+{
+    "Мой профиль": {
+        "icon":"user.png",
+		"path":"profile.php",
+        "desc":"Изменение данных пользователя",
+        "action":"1"
+    },
+    "Друзья": {
+        "icon":"icon_users.png",
+		"path":"friends.php",
+        "desc":"Ваши друзья и Уведомление на дружбу",
+        "action":"1"
+    },
+    "Почтовый ящик": {
+        "icon":"email.png",
+		"path":"messaging.php",
+        "desc":"Ваш почтовый ящик для переписки",
+        "action":"1"
+    },
+    "Настройки": {
+        "icon":"app.png",
+		"path":"profile.php",
+        "desc":"Пользовательские настройки",
+        "action":"1"
+    },
+    "Мои подписки": {
+        "icon":"fave_on_alt.png",
+		"path":"like.php",
+        "desc":"Список подписанных тем",
+        "action":"1"
+    },
+    "Игнорирумые": {
+        "icon":"letter_locked.png",
+		"path":"profile.php",
+        "desc":"Добавить в игнор и Список игнорируемых",
+        "action":"1"
+    },
+    "Темы оформление": {
+        "icon":"theme.png",
+		"path":"theme.php",
+        "desc":"Все доступные темы оформления",
+        "action":"1"
+    }	
+}

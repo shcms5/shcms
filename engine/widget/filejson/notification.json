@@ -1,0 +1,17 @@
+{
+    "Уведомления в друзья": {
+        "icon":"user.png",
+		"path":"?act=notificationlog&do=friends",
+		"text":"Принимать, отклонять уведомление на дружбу"
+    },
+    "Новые сообщения": {
+        "icon":"mail-notification.png",
+		"path":"/modules/messaging.php",
+		"text":"Новые письма от пользователей"
+    },
+    "Новые регистрации": {
+        "icon":"icon_users.png",
+		"path":"?act=notificationlog&do=new_reg",
+		"text":"Новые пользователи за сутки"
+    }
+}

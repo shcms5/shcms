@@ -1,0 +1,23 @@
+        <div id="list">
+		
+    {% if id_user == true %}
+     <div id="list2">
+	 <!--Переадресация на главную-->
+	<a class="btn btn-default" href="/index.php"><i class="glyphicon glyphicon-home"></i></a>
+	   <!--Пользовательская меню-->
+	    <a title="Права: {{group}}" class="btn btn-default" href="/modules/menu.php"><img src="/engine/template/icons/user.png"> {{login}}</a>
+        	 <a class="btn btn-default" href="/modules/profile.php?act=notificationlog">{{mail}} / {{countf}}</a>
+		<a class="btn btn-default" href="/modules/exit.php"> Выход</a>
+		
+		
+        </div>
+    {% else %} 
+	<div id="list2">
+	<!--Переадресация на главную-->
+	 <a class="btn btn-default" href="/index.php"><i class="glyphicon glyphicon-home"></i></a>
+	   <!--Для неавторизованных-->
+        <a class="btn btn-default" href="/modules/auth.php"><img src="/engine/template/icons/login.png"> Войти</a> 
+        <a class="btn btn-default" href="/modules/register.php"><img src="/engine/template/icons/register.png"> Регистрация</a>
+	</div>
+    {% endif %}		
+</div> 

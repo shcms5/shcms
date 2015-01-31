@@ -1,0 +1,25 @@
+{#- Вверхняя Навигация -#}
+<header id="header" role="banner">
+        
+    <div class="container">
+    <div class="navbar navbar-default navbar-fixed-top">    
+        {#- 1 - Подключаем навигию -#} 
+        {% include 'twig/upper/navigation.twig' %}  
+                
+        <div class="collapse navbar-collapse">
+        {#- 1 - Подключаем меню -#}
+        {% include 'twig/upper/menu.twig' %}   
+        
+            {#- Если Пользователь не авторизован то Подключаем Модаль -#}
+            {% if id_user == false %}
+                {#- Окно Авторизации -#}
+                {% include 'twig/upper/login.twig' %}  
+            {% else %}
+                {#- Если Авторизован то Профиль пользователя -#}
+                {% include 'twig/upper/profile.twig' %}  
+            {% endif %}
+            
+        </div>
+    </div>
+    </div>
+</header>

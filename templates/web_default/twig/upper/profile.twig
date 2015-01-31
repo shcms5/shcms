@@ -1,0 +1,19 @@
+<ul class="nav navbar-nav pull-right">     
+    <li>     
+        {#- Имя Авторизованного -#}       
+        <a data-toggle="dropdown" href="#" ><i class="icon-eye-open"></i> {{login}} <span class="caret"></span></a>    
+        <ul class="dropdown-menu">
+            {#- Данные профиля -#}                   
+            <li><a  href="/modules/profile.php?id={{id_user}}">Мой профиль</a></li>             
+            <li><a  href="/modules/menu.php">Основное меню</a></li>   
+            <li><a href="/modules/messaging.php">Почта</a></li>             
+            <li><a href="/modules/profile.php?act=edit_profile">Настройки</a></li>
+	    <li><a href="/modules/theme.php">Оформления</a></li>
+	    <li class="divider"></li>
+	        <li><a href="/modules/exit.php">Выход</a></li>
+            </ul>
+    </li>
+    {#- Друзья Пользователя и Новые  письма в почту -#}     
+    <li> <a href="/modules/friends.php"><i class="icon-user"></i> Друзья {{friend}}</a></li>
+    <li> <a href="/modules/profile.php?act=notificationlog"><i class="icon-bell"></i> {{mail}} | {{countf}}</a>	</li>      
+</ul>

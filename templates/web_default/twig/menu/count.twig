@@ -1,0 +1,19 @@
+{#- Счетчик для Чата -#}            
+{% if m.dir == 'chat' %}         
+    <span class="badge right">{{chat[0]}}</span> 
+{#- Счетчик для Форума -#}   
+{% elseif m.dir == 'forum'%}       
+    <span class="badge right">{{forum[0]}}</span>   
+{#- Счетчик для Загрузок -#}       
+{% elseif m.dir == 'download'%}  
+    <span class="badge right">{{download[0]}}</span>  
+{#- Счетчик для Новостей -#}       
+{% elseif m.dir == 'news'%} 
+    <span class="badge right">{{news[0]}}</span> 
+{#- Счетчик для Библиотеки -#}       
+{% elseif m.dir == 'libs'%}     
+    <span class="badge right">{{libs[0]}}</span> 
+{#- Счетчик для Фотоальбомов -#}       
+{% elseif m.dir == 'gallery'%}  
+    <span class="badge right">{{gallery[0]}}</span>          
+{% endif %}

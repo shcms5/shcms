@@ -1,0 +1,36 @@
+{#- Подключаем Основные JS модули -#}
+<script src="/engine/template/module/editor/jquery-1.11.0.js"></script>
+<script src="/engine/template/module/bootstrap/js/bootstrap.min.js"></script>
+<script src="/engine/template/module/bootstrap/js/jquery.searchable-1.1.0.min.js"></script>   
+    
+<script type="text/javascript">
+	$(function () {
+    $( '#table' ).searchable({
+        striped: true,
+        searchType: 'fuzzy'
+    });
+    
+    $( '#searchlist' ).searchable({
+        searchField: '#container-search',
+        selector: '.list-group-item',
+        childSelector: '.row_3',
+        show: function( elem ) {
+            elem.slideDown(100);
+        },
+        hide: function( elem ) {
+            elem.slideUp( 100 );
+        }
+    })
+    $( '#searchlist2' ).searchable({
+        searchField: '#container-search',
+        selector: '.row3',
+        childSelector: '.listing',
+        show: function( elem ) {
+            elem.slideDown(100);
+        },
+        hide: function( elem ) {
+            elem.slideUp( 100 );
+        }
+    })	
+});
+</script>        

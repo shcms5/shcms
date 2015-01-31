@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{#- ng-app не трогать для AngularJS -#}
+<html lang="ru" ng-app=" ">
+    
+{#- Подключение Основных Страниц -#}
+{% include 'twig/document.twig' %}  
+
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+    
+    {#- Окно Авторизации, Ввехрняя навигация и Профиль пользователя -#}
+    {% include 'twig/upper.twig' %}
+    {#- Подключаем Слайдеры -#}
+    {% include 'twig/slider.twig' %}       
+
+{#- Открываем Секцию -#}    
+<section>
+    <div class="container">
+    <div class="box first">
+    <div class="row">
+        {#- Подключаем правое меню -#}
+        {% include 'twig/rightmenu.twig' %}
+            {#- Выводим Полный Контент по размерам монитора -#}
+	    <div class="col-lg-9 col-md-9 col-sm-6 col-xs-4">
+                            

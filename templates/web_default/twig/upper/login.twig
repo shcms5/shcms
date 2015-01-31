@@ -1,0 +1,67 @@
+{#- Модальное окно Авторизации -#}    
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    
+                    {#- Кнопка Отмены -#}    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {#- Заголовок Окна -#}    
+                    <h4 class="modal-title" id="myModalLabel">Авторизация</h4>
+                </div>
+                {#- Форма Авторизации -#}        
+                <form class="form-horizontal" method="post" action="/modules/auth.php">
+                    <div class="modal-body">
+                        {#- Поле Логина -#}    
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Логин</label>
+                                <div class="col-sm-8">
+                                    <input name="nick" placeholder="Имя пользователя" type="text" class="form-control" required>
+                                </div>
+                        </div>
+                       {#- Поле Пароля -#}    
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Пароль</label>
+                                <div class="col-sm-8">
+                                    <input name="password" type="password" class="form-control" placeholder="Пароль" required>
+                                   <div style="margin-top:10px;" class="text-danger">
+                                        <a href="/modules/lostpass.php">Забыли пароль?</a>
+                                   </div>
+                                </div>   
+                        </div>
+                    </div>
+                    {#- Кнопка Авторизации и Вход через соц сети -#}     
+                    <div class="modal-footer">
+                        <span class="left">
+                            {#- Авторизация через VK -#}    
+                           {% if (vk_id is empty) or (vk_key is empty) or (vk_close == 1) %} 
+                               <!--Не все заполнено Вконтакте-->
+                            {% else %}   
+                           <a href="/modules/auth.php?do=vk">
+                               <img src="/engine/template/icons/auth/vk.png">
+                            </a>
+                           {% endif %}
+                           {#- Авторизация через Facebook -#}    
+                           {% if (fc_id is empty) or (fc_key is empty) or (fc_close == 1) %} 
+                            {% else %}   
+                           <a href="/modules/auth.php?do=fc">
+                               <img src="/engine/template/icons/auth/fc.png">
+                            </a>
+                           {% endif %}
+                           
+                        </span>
+                         {#- Вход и Регистрация -#}      
+                        <input name="submit" type="submit" class="btn btn-success" value="Войти">
+                        <a href="/modules/register.php" class="btn">Регистрация →</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {#- Кнопки Авторизация/Регистрация -#}    
+    <ul class="nav navbar-nav pull-right">	
+        <li><a data-toggle="modal" data-target="#login"> Войти</a></li>
+	<li><a href="/modules/register.php"> Регистрация</a></li>
+    </ul>

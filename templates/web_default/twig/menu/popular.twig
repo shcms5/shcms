@@ -1,0 +1,21 @@
+{#- Если находятся в разделе новостей -#}
+{#- Выводим Популярные новости -#}     
+{% if news_twig == true %}
+     
+    {#- Заголовок и Название -#}    
+    <div class="mainname"><i class="icon-desktop"></i> Популярные новости</div>
+    <div class="mainpost">    
+        
+    {#- Все популярные новости у которых просмотров больше 10 -#}        
+    <ul class="nav nav-pills nav-stacked">
+    {% for v in view_news %}
+        <li>
+            {#- Путь и Заголовок -#}    
+            <a href="/modules/news/view.php?id={{v.id|escape}}">{{v.title|escape('html')}}</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    </div>   
+    
+{% endif %}

@@ -1,0 +1,37 @@
+{
+    "Общие настройки": {
+        "icon":"fa-leaf",
+		"path":"index.php?do=setting&act=all_setting",
+		"text":"Все необходимые настройки"
+    },
+    "Настройки рекламы": {
+        "icon":"fa-group",
+		"path":"index.php?do=setting&act=advertisements",
+		"text":"Управление рекламами"
+    },
+    "Настройки E-mail": {
+        "icon":"fa-trophy",
+		"path":"index.php?do=setting&act=email",
+		"text":"Настраиваем основную Почту скрипта"
+    },
+    "Настройки безопасности": {
+        "icon":"fa-book",
+		"path":"index.php?do=setting&act=security",
+		"text":"Настройки для безопастности"
+    },
+    "Отключение форума и чата": {
+        "icon":"fa-wrench",
+		"path":"index.php?do=setting&act=off_module",
+		"text":"Управление Форумом и чатом"
+    },
+    "Настройки защиты": {
+        "icon":"fa-wrench",
+		"path":"index.php?do=setting&act=security_spam",
+		"text":"Настраиваем необольшую защиту"
+    },
+    "Настройки личных сообщений": {
+        "icon":"fa-wrench",
+		"path":"index.php?do=setting&act=message_options",
+		"text":"Работа с почтой"
+    }
+}

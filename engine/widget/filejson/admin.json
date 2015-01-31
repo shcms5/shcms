@@ -1,0 +1,42 @@
+{
+    "Система": {
+        "icon":"fa-leaf",
+		"path":"system",
+		"text":"Все основные и системные настройки"
+    },
+    "Форум": {
+        "icon":"fa-group",
+		"path":"forum",
+		"text":"Настройки параметров форума"
+    },
+    "Новости": {
+        "icon":"fa-quote-left",
+		"path":"news",
+		"text":"Управление новостями"
+    },
+    "Пользователи": {
+        "icon":"fa-trophy",
+		"path":"user",
+		"text":"Настройка пользователей"
+    },
+    "Настройка Социальных сетей": {
+        "icon":"fa-circle-o-notch",
+		"path":"social",
+		"text":"Настрока авторизации через социальных сетей"
+    },
+    "Вид": {
+        "icon":"fa-book",
+		"path":"theme",
+		"text":"Настройка Графики сайта"
+    },
+    "Поддержка": {
+        "icon":"fa-wrench",
+		"path":"support",
+		"text":"Диагностика и Управление над SQL базой"
+    },
+    "О Системе (SHCMS Engine)": {
+        "icon":"fa-wrench",
+		"path":"help",
+		"text":"Благотворительность SHCMS Engine"
+    }	
+}

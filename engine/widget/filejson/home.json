@@ -1,0 +1,10 @@
+{
+    "Форум": {
+        "icon":"forum.png",
+		"path":"forum"
+    },
+    "Новости": {
+        "icon":"news.png",
+		"path":"news"
+    }
+}

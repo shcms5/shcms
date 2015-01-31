@@ -1,0 +1,11 @@
+{
+    "template_info": {
+        "name":"SHCMS Engine",
+		"author":"Shamsik",
+        "version":"5.7",
+		"cms":"SHCMS Engine",
+		"type":"wap",
+		"icon":"icons.png"
+ 		
+    }
+}	

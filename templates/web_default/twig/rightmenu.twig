@@ -1,0 +1,23 @@
+{#- Правое Меню Навигации -#}
+<div class="col-lg-3 col-md-3 col-sm-6 col-xs-4 right"> 
+
+{#- Текст навигации с иконкой -#}  
+<div class="mainname"><i class="icon-home"></i>&nbsp;Навигация</div>
+{#- Выводим все пути навигации -#}
+<div class="mainpost">
+    
+<ul class="nav nav-pills nav-stacked">
+{% for m in data %}
+    <li>
+        {#- Название Иконка и Счетчик Путей -#}
+        <a href="/modules/{{m.dir|escape}}/"><img src="/admin/icons/module/{{m.icon|escape}}">&nbsp;{{m.name|escape}}
+        {#- Счетчики -#}
+        {% include 'twig/menu/count.twig' %} </a>
+    </li>
+{% endfor %}
+</ul>
+</div>    
+
+{#- Все популярные новости -#}
+ {% include 'twig/menu/popular.twig' %} 
+</div>
