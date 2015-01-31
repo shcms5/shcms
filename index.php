@@ -1,7 +1,7 @@
 <?php
 define('SHCMS_ENGINE',true);
 include_once('engine/system/core.php');
-//Заголовок
+//Заголовок страницы
 $templates->template($glob_core['name_site']);   
 
 //Получаем данные по Виджетам
