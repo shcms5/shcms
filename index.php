@@ -1,16 +1,14 @@
 <?php
 define('SHCMS_ENGINE',true);
 include_once('engine/system/core.php');
+//Заголовок
 $templates->template($glob_core['name_site']);   
 
-use Shcms\Options\Widget\WidgetOption;
+//Получаем данные по Виджетам
+$widget = new \Shcms\Options\Widget\WidgetOption();
 
-echo engine::AngularJS();
-
-//
-
-$widget = new WidgetOption;
-//Полное меню
+//Выводим Виджеты.
 $widget->listing();
-//Пользовательская статистика.
+
+//Данные о пользователей.
 echo $widget->statics();
