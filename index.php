@@ -8,7 +8,7 @@ $templates->template($glob_core['name_site']);
 //Получаем данные по Виджетам
 $widget = new \Shcms\Options\Widget\WidgetOption();
 
-//Выводим Виджеты
+//Выводим Виджеты.
 $widget->listing();
 
 //Данные о пользователей.
