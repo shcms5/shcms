@@ -10,6 +10,7 @@ $id = intval($id);
 //Создаем массив
 $error = array();
 
+
     //Если нужные параметры не доступны
     if (!isset($id) || !is_numeric($id)) {
         header('Location: index.php');
@@ -34,6 +35,10 @@ $error = array();
             $news = $db->get_array($newsc);
         }    
         $templates->template($news['title'],$news['text'],$news['title']); //Название страницы
+        
+                
+
+       
         //Определяем ник
 	$nick = $user->users($news['id_user'],array('nick'),false);
 	//Определяем id

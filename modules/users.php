@@ -8,10 +8,11 @@ $templates->template(Lang::__('Список пользователей'));
 include_once 'user/controller.php';
 
 $userc = new controller;
-        $row = $db->get_array($db->query("SELECT COUNT(*) FROM `users` WHERE `lastdate` > '".(time()-600)."'"));
+        $object = $dbase->query("SELECT COUNT(*) as count FROM `users` WHERE `lastdate` > '".(time()-600)."'");
+        $row = $object->fetchArray();
         //Выводим счетчик постов
-    	$rowq = $db->get_array($db->query("SELECT COUNT(*) FROM `users`"));
-        
+    	$objectl = $dbase->query("SELECT COUNT(*) as count FROM `users`");
+        $rowq = $objectl->fetchArray();
 switch($do):
 	
     //Весь список пользователей

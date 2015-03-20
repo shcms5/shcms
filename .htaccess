@@ -48,9 +48,11 @@ RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
 #Блокирует все скрипты, которые пытаются изменить переменную _REQUEST:
 RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
 #Перенаправляет все подобные попытки на страницу с ошибкой 403 - запрещено
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule .* index.php [L,QSA]
 
 RewriteRule ^modules/forum/section/([0-9]+)/? modules/forum/section.php?id=$1 [L]
+RewriteRule ^modules/forum/index/? modules/forum/index.php [L]
 
 #Обрабатываем серверные ошибки
 ErrorDocument 404 /engine/errors/404.html

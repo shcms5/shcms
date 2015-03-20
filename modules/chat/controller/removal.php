@@ -8,7 +8,7 @@
 class removal {
 
     public static function removall(){
-        global $db,$id_user,$users;
+        global $dbase,$id_user,$users;
         
         //Если пользователь админ то передаем управление
         if($users['group'] == 15) {
@@ -17,16 +17,16 @@ class removal {
             //Если кнопка TRUE то выполняем удаление
             if(isset($submit)){
                 //Удаление данных
-                $db->query('DELETE FROM `chat`');
-                $db->query('TRUNCATE TABLE `chat`');
+                $dbase->query("DELETE FROM `chat`");
                 header('Location: index.php');
             }
             //Счетчик накоплений
-            $count = $db->get_array($db->query('SELECT COUNT(*) FROM `chat`'));
+        $rowc = $dbase->query("SELECT COUNT(*) as count FROM `chat`");
+        $count = $rowc->fetchArray();        
                 //Уведомление при удаление
                 echo '<div class="mainname">'.Lang::__('Удаление постов').'</div>';
                 echo '<div class="mainpost">';
-                echo engine::error('У вас накопилось постов '.engine::number($count[0]).',&nbsp;
+                echo engine::error('У вас накопилось постов '.engine::number($count['count']).',&nbsp;
                 вы действительно хотите удалить их?');
                 echo '</div>';
                 echo '<div class="submit">';
@@ -43,11 +43,11 @@ class removal {
     }
     
     public static function deleteid($id) {
-        global $db,$users;
+        global $dbase,$users;
             //Если пользователь является админом то дает управление
             if($users['group'] == 15) {
                 //Удаляем пост
-                $db->query('DELETE FROM `chat` WHERE `id` = '.$id.'');
+                 $dbase->delete('chat',array('id' => $id));
                 header('Location: index.php');
             }else {
                 header('Location: index.php');

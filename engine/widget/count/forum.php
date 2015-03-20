@@ -35,7 +35,7 @@ if( ! defined( 'SHCMS_ENGINE' ) ) {
 		//Вывод данных из базы
                 $sview .= '<td class="c_forum">';
                 //Название тем
-                $sview .= '<a href="/modules/forum/post.php?id='.$topic['id'].'"><b>'.engine::ucfirst($topic['name']).'</b></a>';
+                $sview .= '<a href="/modules/forum/index.php?do=topics&id='.$topic['id'].'"><b>'.engine::ucfirst($topic['name']).'</b></a>';
                 //Параметры темы
 		$sview .= '<p class="desc">';
 		//$sview .= Lang::__('Автор:').'&nbsp;'.$nick.'&nbsp;,';

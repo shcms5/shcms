@@ -277,7 +277,8 @@ public function show_form($array = array()) {
 
 function limit() { 
     // высчитываем лимиты 
-    return 'limit '.(($this->page*$this->on_page)-$this->on_page).' ,'.$this->on_page." ;"; 
+    return 'LIMIT '.intval((($this->page*$this->on_page)-$this->on_page)).','.$this->on_page.""; 
 } 
+
 
 } 

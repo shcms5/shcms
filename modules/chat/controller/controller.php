@@ -17,12 +17,12 @@ class controller {
      */
 
     public static function comment($param) {
-        global $db, $_date, $glob_core, $id_user, $error;
+        global $dbase,$_date, $glob_core, $id_user, $error;
 
         //Проверка переданного $_POST
         $text = filter_input(INPUT_POST, 'text', FILTER_SANITIZE_STRING);
         //Экранируем специальные символы
-        $text = $db->safesql($text);
+        $text = $dbase->escape($text,true);
 
         if (engine::trim($text) == false and empty($text)) {
             $error['text'][] = 'Сообщение не введено';
@@ -46,8 +46,11 @@ class controller {
         //Если хотябы одна ошибка найдется в $error то не допустится
         if (empty($error)) {
             //Записываем сообщение в базу
-            $chat = $db->query("INSERT INTO `chat` (`text`,`time`,`id_user`)
-                    VALUES ('{$text}','{$_date}','{$id_user}')");
+            $chat = $dbase->insert('chat',array(
+                'text' => ''.$text.'',
+                'time' => ''.$_date.'',
+                'id_user' => ''.$id_user.''        
+            ));
             if ($chat == true) {
                 //Начисление баллов пользователю
                 user::points();
@@ -104,14 +107,15 @@ class controller {
      */
 
     public static function output() {
-        global $db, $id_user;
+        global $dbase, $id_user;
         
         //Счетчик вывода сообщений По умолчанию 10
-        $count = $db->get_array($db->query("SELECT COUNT(*) FROM `chat`"));
-        $list = new Navigation($count[0], 20, true);
+        $rowc = $dbase->query("SELECT COUNT(*) as count FROM `chat`");
+        $count = $rowc->fetchArray();        
+        $list = new Navigation($count['count'], 20, true);
         //Если в базе есть хоть одно сообщение то выводим их все.
-        if ($count[0] > 0) {
-            $query = $db->query("SELECT * FROM `chat` ORDER BY `id` DESC " . $list->limit() . "");
+        if ($count['count'] > 0) {
+            $query = $dbase->query("SELECT * FROM `chat` ORDER BY `id` DESC " . $list->limit() . "");
         } else {
             echo '<div class="mainname">'.Lang::__('Сообщений нет').'</div>';
             echo '<div class="mainpost">';
@@ -120,13 +124,15 @@ class controller {
             exit;
         }
 
-        echo '<div class="mainname">Всего постов: '.$count[0].'</div>';
+        echo '<div class="mainname">Всего постов: '.$count['count'].'</div>';
         echo '<div class="mainpost">';
         echo '<div class="qa-message-list" id="wallmessages">';
+        
         //Вывод всех сообщений
-        while ($chat = $db->get_array($query)) {
+        foreach( $query->fetchAll() as $chat ) {
             //Получаем данные о пользователе
-            $profile = $db->get_array($db->query("SELECT * FROM `users` WHERE `id` = '{$chat[id_user]}'"));
+            $viewz = $dbase->query("SELECT * FROM `users` WHERE `id` = ? ",array($chat->id_user));
+            $profile = $viewz->fetch(); 
             //Получение данных о привилегий
             $group = user::users($id_user, array('group'));
             //Объявляем класс времени
@@ -134,25 +140,26 @@ class controller {
             //Если у привилегии 15 то выполняем действие
             $viewds = '';
             
+            
             if ($group == 15) {
-                $viewds .= '<a href="index.php?do=delete&id=' . $chat['id'] . '">';
+                $viewds .= '<a href="index.php?do=delete&id=' . $chat->id . '">';
                 $viewds .= '<i style="font-size:14px;" class="glyphicon glyphicon-trash"></i></a>&nbsp;';
             }
-            if($id_user != $chat['id_user'] and $id_user == true) {
-                $viewds .= '<a title="Цитирование" href="index.php?quote&id=' . $chat['id'] . '">';
+            if($id_user != $chat->id_user and $id_user == true) {
+                $viewds .= '<a title="Цитирование" href="index.php?quote&id=' . $chat->id . '">';
                 $viewds .= '<i style="font-size:14px;" class="glyphicon glyphicon-tasks"></i></a>';
             }else {
                 $viewds .= '';
             }
             //Путь к аватарам
-            $avatar = '/upload/avatar/' . $profile['avatar'];
+            $avatar = '/upload/avatar/' . $profile->avatar;
 
     	    echo '<div class="message-item">';
                 echo '<div class="message-inner">';
 	            echo '<div class="message-head clearfix">';
                         //Получаем действующий аватар
 	                echo '<div class="avatar pull-left">';
-                            if ($profile['avatar'] == false and file_exists($avatar) == false) {
+                            if ($profile->avatar == false and file_exists($avatar) == false) {
                                 echo '<img class="Chatimg" src="/engine/template/icons/default_large.png">';
                             } else {
                                 echo '<img class="Chatimg" src="' . $avatar . '">';
@@ -162,7 +169,7 @@ class controller {
                         echo '<div class="user-detail">';
                             //Автор добавления
 		            echo '<h5 class="handle">';
-                            echo '<a href="'.MODULE.'profile.php?id='.$profile['id'].'">'.$profile['nick'].'</a>';
+                            echo '<a href="'.MODULE.'profile.php?id='.$profile->id.'">'.$profile->nick.'</a>';
                             echo '<span class="time">' . $viewds . '</span>';
                             echo '</h5>';
                                 //Разделитель
@@ -175,11 +182,11 @@ class controller {
                                     echo '<div style="border-bottom: 0px;" class="details">';
                                         //Привиление пользователя
                                         echo '<span>';
-                                        echo '<img src="/engine/template/icons/group.png">&nbsp;'.user::group($chat['id_user']);
+                                        echo '<img src="/engine/template/icons/group.png">&nbsp;'.user::group($chat->id_user);
                                         echo '</span>';
                                         //Дата добавления
                                         echo '<span>';
-                                        echo '<img src="/engine/template/icons/date.png">&nbsp;'.$tdate->make_date($chat['time']);
+                                        echo '<img src="/engine/template/icons/date.png">&nbsp;'.$tdate->make_date($chat->time);
                                         echo '</span>';
                                     echo '</div>';
                                         echo '</span>';
@@ -189,7 +196,7 @@ class controller {
                             echo '</div>';
 	                echo '</div>';
                         //Текст сообщения                        
-		        echo '<div class="qa-message-content">'.engine::input_text($chat['text']).'</div>';
+		        echo '<div class="qa-message-content">'.engine::input_text($chat->text).'</div>';
 	 
                 echo '</div></div>'; 
         }

@@ -1,9 +1,9 @@
 <?php
 define('SHCMS_ENGINE',true);
 include_once('engine/system/core.php');
-//Заголовок Страницы
-$templates->template($glob_core['name_site']);   
 
+//Заголовок страницы
+$templates->template($glob_core['name_site']);   
 
 //Получаем данные по Виджетам
 $widget = new \Shcms\Options\Widget\WidgetOption();

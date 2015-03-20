@@ -14,7 +14,7 @@ class engine {
       * 
       */
     public static function php_version() {
-        version_compare(PHP_VERSION, '5.3', '>=') or die('Для запуска движка испольуйте версию PHP 5.3 и выше');
+        version_compare(PHP_VERSION, '5.4', '>=') or die('Для запуска движка испольуйте версию PHP 5.4 и выше');
     }
     /**
      * Фильтруем строки 
@@ -43,6 +43,12 @@ class engine {
             return NULL;
         }
     }
+    
+    /**
+     * Библиотека Angular
+     * 
+     * @param Null
+     */    
     public static function AngularJS() {
         
         $tassets = new Shcms\Component\Templating\Path\Assets;
@@ -60,6 +66,41 @@ class engine {
             '/engine/template/module/AngularJS/shcms_angular.js'         
         ));
     }
+    
+    /**
+     * Плеер Video
+     * 
+     * @param CSS JS
+     */
+    public static function VideoJS() {
+        $videojs = new \Shcms\Component\Templating\Path\Assets;
+        
+        $return = $videojs->js([
+            '/engine/template/module/html5/video/video.js'
+        ]);
+        
+        $return .= $videojs->css([
+            '/engine/template/module/html5/video/video-js.css'
+        ]);
+        
+        return $return;
+    }
+
+    /**
+     * Плеер Audio
+     * 
+     * @param CSS JS
+     */
+    public static function AudioJS() {
+        $audiojs = new \Shcms\Component\Templating\Path\Assets;
+        
+        $return = $audiojs->js([
+            '/engine/template/module/html5/audio/audiojs/audio.min.js'
+        ]);
+
+        return $return;
+    }    
+    
     /**
      * Кодировка файлов
      * @param $fng
@@ -602,7 +643,7 @@ class engine {
     public static function format_r($name) {
         $f1 = strrpos($name, ".");
         $f2 = substr($name, $f1 - 999, -4);
-        $fname = strtolower($f2);
+        $fname = \utf8_strtolower($f2);
     return $fname;
     }
 	

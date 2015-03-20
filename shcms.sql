@@ -128,19 +128,34 @@ CREATE TABLE IF NOT EXISTS `files` (
   `id_user` int(11) NOT NULL,
   `count` int(11) NOT NULL,
   `countd` int(11) NOT NULL COMMENT 'Счетчик скачиваний',
+  `screen` varchar(255) NOT NULL,
+  `screen_2` varchar(255) NOT NULL,
+  `screen_3` varchar(255) NOT NULL,
+  `oldtime` int(11) NOT NULL DEFAULT '0',
   `filesize` varchar(255) NOT NULL,
-  `screen` varchar(255) NOT NULL COMMENT 'Скриншот 1',
-  `screen_2` varchar(255) NOT NULL COMMENT 'Скриншот 2',
-  `screen_3` varchar(255) NOT NULL COMMENT 'Скриншот 3',
   `text1` varchar(255) NOT NULL COMMENT 'Краткое описание',
   `text2` text NOT NULL COMMENT 'Полное описание',
   `desc` varchar(500) NOT NULL COMMENT 'Описание (meta):',
   `key` varchar(255) NOT NULL COMMENT 'Ключевые слова (meta)',
   `update` int(11) NOT NULL COMMENT 'Последнее редактирование',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Файлы загрузок' AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='Файлы загрузок' AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
+
+
+--
+-- Структура таблицы `files_favorites`
+--
+
+CREATE TABLE IF NOT EXISTS `files_favorites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `id_files` int(11) NOT NULL,
+  `time` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='Избранные файлы' AUTO_INCREMENT=1 ;
+
 
 --
 -- Структура таблицы `files_dir`
@@ -662,6 +677,7 @@ CREATE TABLE IF NOT EXISTS `system_settings` (
   `ls_message` int(11) NOT NULL DEFAULT '10' COMMENT 'Максимальное количество ЛС на одной странице',
   `on_mail` int(11) NOT NULL DEFAULT '1' COMMENT 'Включить почту',
   `editor` enum('1','2') NOT NULL COMMENT 'Редактор',
+  `filesadmin` enum('0','1') NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
@@ -669,8 +685,8 @@ CREATE TABLE IF NOT EXISTS `system_settings` (
 -- Дамп данных таблицы `system_settings`
 --
 
-INSERT INTO `system_settings` (`id`, `name_kol`, `time_core`, `name_site`, `description`, `keywords`, `html_email`, `email_p`, `from_email`, `un_auth`, `notify_reg`, `off_reg`, `method_pass`, `antimat`, `antiadv`, `antilink`, `ls_message`, `on_mail`, `editor`) VALUES
-(1, 1, 0, 'Новая система SHCMS Engine', 'SHCMS Engine - Многопользовательская система управление сайтом\r\n', 'SHCMS, SHCMS Engine, CMS, Система управление сайтом', 1, 'support@shcms.ru', 'support@shcms.ru', 3, '1', '2', '1', '1', '2', '2', 10, 1, '');
+INSERT INTO `system_settings` (`id`, `name_kol`, `time_core`, `name_site`, `description`, `keywords`, `html_email`, `email_p`, `from_email`, `un_auth`, `notify_reg`, `off_reg`, `method_pass`, `antimat`, `antiadv`, `antilink`, `ls_message`, `on_mail`, `editor`, `filesadmin`) VALUES
+(1, 1, 0, 'Новая система SHCMS Engine', 'SHCMS Engine - Многопользовательская система управление сайтом\r\n', 'SHCMS, SHCMS Engine, CMS, Система управление сайтом', 1, 'support@shcms.ru', 'support@shcms.ru', 3, '1', '2', '1', '1', '2', '2', 10, 1, '','0');
 
 -- --------------------------------------------------------
 
@@ -723,6 +739,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `off_mail` enum('0','1') NOT NULL DEFAULT '0',
   `frating` varchar(255) NOT NULL DEFAULT '0',
   `asocial` enum('sh','vk','fc') NOT NULL DEFAULT 'sh',
+  `forum_status` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Польщовательская таблица' AUTO_INCREMENT=1 ;
 

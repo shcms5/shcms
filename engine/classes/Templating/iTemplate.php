@@ -84,7 +84,7 @@ class iTemplate {
                 //Путь к шаблону
                 $loader = new Twig_Loader_Filesystem(H.'templates/web_default/');
                 //инициализируем Twig
-                $twig = new Twig_Environment($loader, array('cache' => H.'templates/web_default/cache/','debug' => true));                
+                $twig = new Twig_Environment($loader);                
 	    }elseif($deviceType == 'phone') {
                 //Путь к шаблону
 		$loader = new Twig_Loader_Filesystem(H.'templates/wap_default/');

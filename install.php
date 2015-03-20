@@ -5,11 +5,11 @@ include_once('admin/install/template/header.php');
 
 include_once(H.'admin/install/setup.php');
 
-$setup = new ShcmsSetup();
+$setup = new \ShcmsSetup();
 
-    if(file_exists(H.'engine/config/dbconfig.php') == true) {
-        require_once H.'engine/config/dbconfig.php';
-        require_once H.'admin/install/setup/sql.php';
+    if(file_exists(\H.'engine/config/dbconfig.php') == true) {
+		include_once \H.'engine/system/core.php';
+        include_once \H.'admin/install/setup/sql.php';
     }
     
 switch($step):
@@ -97,6 +97,8 @@ define ("COLLATE", "utf8");
 define ("SHCMS_PROJECT", "SHCMS Engine (version: 5.x)");
 
 \$db = new Shcms\Options\Database\MYSQLi\MYSQLi;
+
+\$dbase = DBDriver\DMYSQLi\DMYSQLi::getInstance(DBHOST, DBUSER, DBPASS, DBNAME);
 HTML;
 
                 $con_file = fopen("engine/config/dbconfig.php", "w+") or 
@@ -188,7 +190,7 @@ case 'mysqli':
                 $db->query($query);
             }    
     
-    $sql = SQLParser::getQueriesFromFile('shcms.sql') ;
+    $sql = \SQLParser::getQueriesFromFile('shcms.sql') ;
     
     foreach ($sql as $value => $key) {
         if($db->query($key) == true) {
@@ -283,8 +285,8 @@ case 'profiles':
         
     }
     
-    
-    $form = new Shcms\Component\Form\Form();
+   
+    $form = new \Shcms\Component\Form\Form();
     $core = $db->get_array($db->query("SELECT * FROM `system_settings`"));
     
     echo $form->open(array('action' => 'install.php?step=profiles','class' => 'form-horizontal'));

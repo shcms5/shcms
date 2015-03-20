@@ -15,22 +15,22 @@ final class version {
 	public $release = '5.7';
 	
 	/** @ var string Версия техническое обслуживание.  */
-	public $dev_level = '4';
+	public $dev_level = '5';
 	
 	/** @ var string Статус развития.  */
 	public $dev_status = 'Стабильная версия';
 	
 	/** @ var string Номер сборки.  */
-	public $build = '42';
+	public $build = '139';
 	
 	/** @var  string  Кодовое слово. */
 	public $codename = 'Shamsik_SHCMS';
 
 	/** @var  string  Дата выхода. */
-    public $reldate = '31.01.2015';
+    public $reldate = '20.03.2015';
     
 	/** @var  string  Время выхода. */
-	public $reltime = '17.00';
+	public $reltime = '01.00';
 
     /** @var string Псевдоним разработчика CMS системы */
     public $developer = 'Shamsik';

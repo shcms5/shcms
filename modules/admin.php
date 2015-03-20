@@ -7,4 +7,3 @@ echo engine::admin($users['group']);
 
 header("Location: ../admin.php");
 exit;
-?>

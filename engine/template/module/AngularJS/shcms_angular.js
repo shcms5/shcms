@@ -18,3 +18,7 @@
   expect(element(by.css('.base-class')).getAttribute('class')).not.
     toMatch(/my-class/);
 });
+
+
+
+

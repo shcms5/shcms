@@ -1,0 +1,11 @@
+{
+    "name": "shcms",
+    "description": "SHCMS Engine",
+    "require": {
+        "php": ">=5.4.35",
+		"slim/slim": "dev-master"
+    },
+	    "config": {
+        "vendor-dir": "engine/classes/Shcms/Options/Conductor"
+    }
+}

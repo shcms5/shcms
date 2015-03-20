@@ -79,6 +79,8 @@ class Form implements \Shcms\Component\Form\ConfigInterface {
         $o .= (isset($params['cols']))      ? " cols='{$params['cols']}'"                       : '';
         $o .= (isset($params['rows']))      ? " rows='{$params['rows']}'"                       : '';
         $o .= (isset($params['disabled']))  ? " disabled='{$params['disabled']}'"               : '';
+        $o .= (isset($params['ng']))        ? "{$params['ng']}"                 : '';    
+        $o .= (isset($params['required']))        ? " required='{$params['required']}'"                 : '';           
         $o .= (isset($params['placeholder']))  ? " placeholder='{$params['placeholder']}'"      : '';
         $o .= (isset($params['style']))     ? " style='{$params['style']}'"                     : '';
         $o .= '>';
@@ -144,6 +146,7 @@ class Form implements \Shcms\Component\Form\ConfigInterface {
                 }
             }
         }
+        print_R($params['data']);
         $o .= "</select>\n";
         return $o;
     }

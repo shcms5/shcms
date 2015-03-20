@@ -9,6 +9,7 @@ define(ICON_ADMIN,'/admin/icons/');
 use Shcms\Component\Provider\Json\JsonScript;
 $json = new JsonScript;	
 
+//Если Пользователь не Администратор
 if($users['group'] != 15) {
    header('Location: index.php');
    exit;

@@ -30,6 +30,7 @@ switch($do):
             //Обработка полученного пароля
 	    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 	    $password2 = filter_input(INPUT_POST, 'password2', FILTER_SANITIZE_STRING);
+            
                 //Если введенные пароли не совпадают
 	        if( $password != $password2 ) {
                     $error['password'][] = 'Введенные пароли должны быть одинаковы';

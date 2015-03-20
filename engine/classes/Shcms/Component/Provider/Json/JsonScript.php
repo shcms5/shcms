@@ -6,6 +6,7 @@
    * @author Shamsik
    * @link http://shcms.ru
    */ 
+
 namespace Shcms\Component\Provider\Json;
 
 class JsonScript {
